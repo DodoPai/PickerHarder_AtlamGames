@@ -29,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         PlayerMove();
-        StartCoroutine(speedBoostDelay());
-        //SpeedBoost();
+        StartCoroutine(SpeedBoost());
+        
 
 
 
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.CompareTag("stop"))
         {
-            StartCoroutine(DelayForMove());
+            StartCoroutine(DelayforPlayerMovement());
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    IEnumerator DelayForMove() 
+    IEnumerator DelayforPlayerMovement() 
     {
         speed = 0;
         yield return new WaitForSeconds(5f);
@@ -102,20 +102,8 @@ public class PlayerMovement : MonoBehaviour
        speed = 10;
 
     }
-    //private void SpeedBoost()
-    //{
-    //    if(speedBoost_ == true)
-    //    {
-    //       if (Input.GetKeyDown(KeyCode.UpArrow))
-    //      {
-    //          Debug.Log("SpeedUp");
-    //          speed += 10;
-                
-    //       }
-    //  }
-       
-    //}
-    IEnumerator speedBoostDelay()
+   
+    IEnumerator SpeedBoost()
     {
 
        if (speedBoost_ == true)

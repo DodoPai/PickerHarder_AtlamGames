@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private CalculateBallAmount currentballNumber;
+    [SerializeField] private PlatformTypes scriptableObject1;
+    [SerializeField] private PlatformTypes scriptableObject2;
+    [SerializeField] private PlatformTypes scriptableObject3;
     #region Self Variables
     public bool _isReadyToMove;
 
-    [SerializeField] private MovePlatform isTrue;
-
     #endregion
     #region Serialized Variables
+
+
     [SerializeField] public float speed = 10;
     [SerializeField] private float leftRightSpeed = 4;
     private bool speedBoost_;
@@ -18,8 +22,15 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region GameOverandWin
+    [SerializeField] public GameObject gameOverpanel;
+
+    #endregion
+
     private void Start()
     {
+        Time.timeScale = 1;
+        gameOverpanel.SetActive(false);
         speedBoost_ = false;
         _isReadyToMove = true;
         
@@ -63,10 +74,28 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("stop"))
+        if(other.CompareTag("stop1"))
         {
+            Debug.Log("Countdown started");
+            Invoke("GameOverCountDown", 4f);
             StartCoroutine(DelayforPlayerMovement());
         }
+        if (other.CompareTag("stop2"))
+        {
+            Debug.Log("Countdown started");
+            Invoke("GameOverCountDownTwo", 4f);
+            StartCoroutine(DelayforPlayerMovement());
+        }
+        if (other.CompareTag("stop3"))
+        {
+            Debug.Log("Countdown started");
+            Invoke("GameOverCountDownThree", 4f);
+            StartCoroutine(DelayforPlayerMovement());
+        }
+
+
+
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -76,9 +105,6 @@ public class PlayerMovement : MonoBehaviour
             LevelBoundary.leftSide = -6.28f;
             LevelBoundary.rightSide = 6.47f;
             speedBoost_ = true;
-
-
-
         }
         if(collision.gameObject.tag == "speedDecreaser")
         {
@@ -86,11 +112,8 @@ public class PlayerMovement : MonoBehaviour
             LevelBoundary.leftSide = -6.28f;
             LevelBoundary.rightSide = 6.47f;
             speed = 5;
-            
-            
-
-
         }
+        
     }
 
 
@@ -126,6 +149,39 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+    }
+    private void GameOverCountDown()
+    {
+        if(scriptableObject1.isTrue == false)
+        {
+            if (currentballNumber.ballNumber < scriptableObject1.howManyBall)
+            {
+                Time.timeScale = 0;
+                gameOverpanel.SetActive(true);
+            }
+        }
+    }
+    private void GameOverCountDownTwo()
+    {
+        if (scriptableObject2.isTrue == false)
+        {
+            if (currentballNumber.ballNumber < scriptableObject2.howManyBall)
+            {
+                Time.timeScale = 0;
+                gameOverpanel.SetActive(true);
+            }
+        }
+    }
+    private void GameOverCountDownThree()
+    {
+        if (scriptableObject3.isTrue == false)
+        {
+            if (currentballNumber.ballNumber < scriptableObject3.howManyBall)
+            {
+                Time.timeScale = 0;
+                gameOverpanel.SetActive(true);
+            }
+        }
     }
 
 

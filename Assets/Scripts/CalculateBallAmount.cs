@@ -12,10 +12,7 @@ public class CalculateBallAmount : MonoBehaviour
     [SerializeField] private PlatformTypes scriptableObject;
 
 
-    [SerializeField] private PlayerMovement player;
-
-
-    
+   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,22 +23,18 @@ public class CalculateBallAmount : MonoBehaviour
             if (ballNumber == scriptableObject.howManyBall)
             {
                 scriptableObject.isTrue = true;
+                
             }
             
-
-
-
-
-
-
-
-
-
+            
 
         }
+
     }
    
-    
+
+
+
 
 
 }

@@ -14,6 +14,8 @@ public class ObjectDestroyer : MonoBehaviour
     }
     private void DestroyObject()
     {
+        AudioManager.instance.Play("BallSound");
+
         Instantiate(particleEffects, transform.position, Quaternion.identity);
         Destroy(gameObject, 0.75f);
 

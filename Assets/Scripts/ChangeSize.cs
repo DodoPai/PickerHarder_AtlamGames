@@ -24,8 +24,9 @@ public class ChangeSize : MonoBehaviour
         if (other.gameObject.CompareTag("sizeUpNumber1"))
         {
             transform.localScale = new Vector3(0.7f,0.9f, 0.5f);
-            LevelBoundary.leftSide = -2.64f;
-            LevelBoundary.rightSide = 2.76f;
+            LevelBoundary.leftSide = -3.87f;
+            LevelBoundary.rightSide = 3.43f;
+            Instantiate(boxParticle, transform.position, Quaternion.identity);
             Instantiate(boxParticle, transform.position, Quaternion.identity);
 
         }
